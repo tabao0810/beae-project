@@ -72,7 +72,7 @@ export default {
           title: "hinh anh",
         },
       ],
-      colums: 4,
+      colums: 6,
       tabCol: 2,
       mobCol: 1,
       gaps: 4,
