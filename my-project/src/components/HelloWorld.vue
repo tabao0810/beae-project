@@ -78,32 +78,50 @@
         </div>
         <div>
           <h1 class="mt-20 mb-5">Edit form</h1>
-          <div class="flex items-center">
-            <p class="">Số cột:</p>
-            <input
-              type="number"
-              v-model="theImg.colums"
-              min="1"
-              class="input-num grow w-32 ml-3"
-            />
-          </div>
-          <div class="flex items-center mt-2">
-            <p class="">Khoảng cách 2 cột:</p>
-            <input
-              type="number"
-              v-model="theImg.spacex"
-              min="1"
-              class="input-num grow w-32 ml-3"
-            />
-          </div>
-          <div class="flex items-center mt-2">
-            <p class="">Khoảng cách 2 hàng:</p>
-            <input
-              type="number"
-              v-model="theImg.spacey"
-              min="1"
-              class="input-num grow w-20 ml-3"
-            />
+          <div
+            v-for="(data, index) in formContact"
+            :key="index"
+            class="mt-3 mb-5"
+          >
+            <div class="flex items-center mt-3">
+              <p class="">Field type:</p>
+              <select
+                name=""
+                id=""
+                class="input-num grow w-32 ml-3"
+                v-model="data.dataType"
+              >
+                <option value="text">text</option>
+                <option value="email">email</option>
+                <option value="number">number</option>
+                <option value="textarea">textarea</option>
+                <option value="submit">submit</option>
+              </select>
+            </div>
+            <div class="flex items-center mt-2">
+              <p class="">Placeholder:</p>
+              <input
+                type="text"
+                v-model="data.dataPlaceholder"
+                class="input-field grow w-32 ml-3"
+              />
+            </div>
+            <div class="flex items-center mt-2">
+              <p class="">Name:</p>
+              <input
+                type="text"
+                v-model="data.dataName"
+                class="input-field grow w-20 ml-3"
+              />
+            </div>
+            <div class="flex items-center mt-2">
+              <p class="">Value:</p>
+              <input
+                type="text"
+                v-model="data.dataValue"
+                class="input-field grow w-20 ml-3"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -111,7 +129,7 @@
       <div class="col-span-3">
         <the-image :numImg="theImg"></the-image>
         <the-slider :numSlide="theSlide"></the-slider>
-        <form-input></form-input>
+        <form-input :formCon="formContact"></form-input>
       </div>
     </div>
   </div>
@@ -136,6 +154,40 @@ export default {
         sildeGroup: 1,
         spaceSlides: 30,
       },
+      formContact: [
+        {
+          dataLabel: "",
+          dataType: "text",
+          dataPlaceholder: "Your name",
+          dataName: "name",
+          dataValue: "",
+          dataClass: "form_contact-input",
+        },
+        {
+          dataLabel: "",
+          dataType: "text",
+          dataPlaceholder: "Your name",
+          dataName: "name",
+          dataValue: "",
+          dataClass: "form_contact-input",
+        },
+        {
+          dataLabel: "",
+          dataType: "text",
+          dataPlaceholder: "Your name",
+          dataName: "name",
+          dataValue: "",
+          dataClass: "form_contact-input",
+        },
+        {
+          dataLabel: "",
+          dataType: "text",
+          dataPlaceholder: "Your name",
+          dataName: "name",
+          dataValue: "",
+          dataClass: "form_contact-input",
+        },
+      ],
     };
   },
   components: {
@@ -150,5 +202,13 @@ export default {
 <style scoped>
 .input-num {
   padding: 2px 10px;
+}
+.input-field {
+  padding: 2px 10px;
+  background-color: #f3f3f3;
+}
+.input-field:focus {
+  background-color: #fff;
+  outline-color: #ff343b;
 }
 </style>

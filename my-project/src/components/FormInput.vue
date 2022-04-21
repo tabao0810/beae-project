@@ -1,19 +1,26 @@
 <template>
-  <div class="container mx-auto mt-40">
+  <div class="container mx-auto mt-20 mb-20">
     <h2>Form contact</h2>
-    <div class="grid grid-rows-3 grid-flow-col gap-4">
-      <div class="row-span-3">1</div>
-      <div class="col-span-2">
-        <h2 style="text-align: left">Form Contact</h2>
+    <div class="grid grid-col-1 grid-flow-col gap-4">
+      <div class="">
         <form action="form_contact" @submit="checkForm">
           <div
             class="mt-2 grid grid-cols-1 form-contact-tex"
-            v-for="(data, index) in datas"
+            v-for="(data, index) in formCon"
             :key="index"
           >
             <label :for="data.dataName" class="mr-2">{{
               data.dataLabel
             }}</label>
+            <textarea
+              v-if="data.dataType === 'textarea'"
+              :name="data.dataName"
+              :placeholder="data.dataPlaceholder"
+              :value="data.dataValue"
+              :class="data.dataClass"
+              :required="data.dataRequired"
+              rows="5"
+            ></textarea>
             <input
               :type="data.dataType"
               :name="data.dataName"
@@ -21,6 +28,7 @@
               :value="data.dataValue"
               :class="data.dataClass"
               :required="data.dataRequired"
+              v-else
             />
           </div>
         </form>
@@ -71,7 +79,7 @@ export default {
           dataModel: "info.mess",
         },
         {
-          dataLabel: "ssssss",
+          dataLabel: "",
           dataType: "checkbox",
           dataPlaceholder: "Number",
           dataName: "checkbox",
@@ -96,6 +104,11 @@ export default {
         isCheck: false,
       },
     };
+  },
+  props: {
+    formCon: {
+      type: Array,
+    },
   },
   methods: {
     checkForm() {
@@ -137,5 +150,6 @@ export default {
 }
 .form-contact-tex {
   display: flex;
+  justify-content: flex-start;
 }
 </style>
