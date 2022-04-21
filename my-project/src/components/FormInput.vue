@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto mt-40">
     <h2>Form contact</h2>
     <div class="grid grid-rows-3 grid-flow-col gap-4">
       <div class="row-span-3">1</div>

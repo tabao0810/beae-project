@@ -1,15 +1,15 @@
 <template>
-  <div class="container px-3 md:px-10">
+  <div class="">
+    <h1 class="mb-10">The image</h1>
     <div
-      class="grid"
-      :class="`gap-${gaps} lg:grid-cols-${colums} md:grid-cols-${tabCol} sm:grid-cols-${mobCol}`"
+      :class="`grid gap-x-${numImg.spacex} gap-y-${numImg.spacey} grid-cols-${numImg.colums} `"
     >
       <div v-for="(item, index) in items" :key="index">
         <div class="w-full h-full">
           <img
             :src="item.img"
             :alt="item.title"
-            class="w-full h-full object-fill rounded-xl"
+            class="w-full h-full object-fill rounded-md"
             @click="handleToOpen(item)"
           />
         </div>
@@ -72,7 +72,6 @@ export default {
           title: "hinh anh",
         },
       ],
-      colums: 6,
       tabCol: 2,
       mobCol: 1,
       gaps: 4,
@@ -84,9 +83,15 @@ export default {
     handleToOpen(item) {
       this.isActive = true;
       this.currentIamge = item.id - 1;
+      console.log(this.colums);
     },
     handleToClose() {
       this.isActive = false;
+    },
+  },
+  props: {
+    numImg: {
+      type: Object,
     },
   },
 };
@@ -114,5 +119,9 @@ export default {
   color: #f1f1f1;
   font-size: 50px;
   cursor: pointer;
+}
+.img-size {
+  width: 100px;
+  height: 100px;
 }
 </style>

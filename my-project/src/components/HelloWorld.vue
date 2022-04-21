@@ -1,40 +1,154 @@
-<script setup>
-import { ref } from 'vue'
-
-defineProps({
-  msg: String
-})
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
+  <div class="container mx-auto px-40">
+    <div class="grid grid-cols-4 gap-4">
+      <div>
+        <div>
+          <h1 class="mb-10">Edit image</h1>
+          <div class="flex items-center">
+            <p class="">Số cột:</p>
+            <input
+              type="number"
+              v-model="theImg.colums"
+              min="1"
+              class="input-num grow w-32 ml-3"
+            />
+          </div>
+          <div class="flex items-center mt-2">
+            <p class="">Khoảng cách 2 cột:</p>
+            <input
+              type="number"
+              v-model="theImg.spacex"
+              min="1"
+              class="input-num grow w-32 ml-3"
+            />
+          </div>
+          <div class="flex items-center mt-2">
+            <p class="">Khoảng cách 2 hàng:</p>
+            <input
+              type="number"
+              v-model="theImg.spacey"
+              min="1"
+              class="input-num grow w-20 ml-3"
+            />
+          </div>
+        </div>
+        <div>
+          <h1 class="mt-20 mb-5">Edit slide</h1>
+          <div class="flex items-center">
+            <p class="">Slide per View:</p>
+            <input
+              type="number"
+              v-model="theSlide.sildesView"
+              min="1"
+              class="input-num grow w-32 ml-3"
+            />
+          </div>
+          <div class="flex items-center mt-2">
+            <p class="">Slide per group:</p>
+            <input
+              type="number"
+              v-model="theSlide.sildeGroup"
+              min="1"
+              class="input-num grow w-32 ml-3"
+            />
+          </div>
+          <div class="flex items-center mt-2">
+            <p class="">Space per slide:</p>
+            <input
+              type="number"
+              v-model="theSlide.spaceSlides"
+              min="1"
+              class="input-num grow w-20 ml-3"
+            />
+          </div>
+          <div class="mt-10 flex">
+            <button
+              @click="theSlide.isNavigation = !theSlide.isNavigation"
+              class="btn"
+            >
+              Hidden Navigation
+            </button>
+            <button
+              @click="theSlide.isPagination = !theSlide.isPagination"
+              class="btn"
+            >
+              Hidden Pagination
+            </button>
+          </div>
+        </div>
+        <div>
+          <h1 class="mt-20 mb-5">Edit form</h1>
+          <div class="flex items-center">
+            <p class="">Số cột:</p>
+            <input
+              type="number"
+              v-model="theImg.colums"
+              min="1"
+              class="input-num grow w-32 ml-3"
+            />
+          </div>
+          <div class="flex items-center mt-2">
+            <p class="">Khoảng cách 2 cột:</p>
+            <input
+              type="number"
+              v-model="theImg.spacex"
+              min="1"
+              class="input-num grow w-32 ml-3"
+            />
+          </div>
+          <div class="flex items-center mt-2">
+            <p class="">Khoảng cách 2 hàng:</p>
+            <input
+              type="number"
+              v-model="theImg.spacey"
+              min="1"
+              class="input-num grow w-20 ml-3"
+            />
+          </div>
+        </div>
+      </div>
 
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+      <div class="col-span-3">
+        <the-image :numImg="theImg"></the-image>
+        <the-slider :numSlide="theSlide"></the-slider>
+        <form-input></form-input>
+      </div>
+    </div>
+  </div>
 </template>
 
+<script>
+import TheImage from "./TheImage.vue";
+import FormInput from "./FormInput.vue";
+import TheSlider from "./TheSlider.vue";
+export default {
+  data() {
+    return {
+      theImg: {
+        colums: 4,
+        spacex: 4,
+        spacey: 4,
+      },
+      theSlide: {
+        isPagination: true,
+        isNavigation: true,
+        sildesView: 1,
+        sildeGroup: 1,
+        spaceSlides: 30,
+      },
+    };
+  },
+  components: {
+    TheImage,
+    FormInput,
+    TheSlider,
+  },
+};
+</script>
+
+<style></style>
 <style scoped>
-a {
-  color: #42b983;
+.input-num {
+  padding: 2px 10px;
 }
 </style>
