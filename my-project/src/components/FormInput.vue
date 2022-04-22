@@ -152,4 +152,9 @@ export default {
   display: flex;
   justify-content: flex-start;
 }
+input[type="submit"]:hover {
+  cursor: pointer;
+  color: #ff343b;
+  border: 1px solid #ff343b;
+}
 </style>
