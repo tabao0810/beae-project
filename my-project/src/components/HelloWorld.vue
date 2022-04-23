@@ -31,6 +31,24 @@
               class="input-num grow w-20 ml-3"
             />
           </div>
+          <div class="flex items-center mt-2">
+            <p class="">Thêm ảnh:</p>
+            <input type="file" ref="file" @change="handleUpload()" />
+          </div>
+          <div class="flex items-center mt-2">
+            <button
+              @click.prevent="addImage(imageItems)"
+              class="h-10 px-6 font-semibold rounded-full border border-slate-200 text-slate-900"
+            >
+              Upload
+            </button>
+            <button
+              @click.prevent="deleteImage()"
+              class="h-10 px-6 font-semibold rounded-full border border-slate-200 text-slate-900 ml-3"
+            >
+              Delete
+            </button>
+          </div>
         </div>
         <div>
           <h1 class="mt-20 mb-5">Edit slide</h1>
@@ -73,6 +91,24 @@
               class="btn"
             >
               Hidden Pagination
+            </button>
+          </div>
+          <div class="flex items-center mt-2">
+            <p class="">Thêm slide:</p>
+            <input type="file" ref="file" @change="handleUploadSlide()" />
+          </div>
+          <div class="flex items-center mt-2">
+            <button
+              @click.prevent="addSlide(slideItem)"
+              class="h-10 px-6 font-semibold rounded-full border border-slate-200 text-slate-900"
+            >
+              Upload
+            </button>
+            <button
+              @click.prevent="deleteSlide()"
+              class="h-10 px-6 font-semibold rounded-full border border-slate-200 text-slate-900 ml-3"
+            >
+              Delete
             </button>
           </div>
         </div>
@@ -139,6 +175,9 @@
 import TheImage from "./TheImage.vue";
 import FormInput from "./FormInput.vue";
 import TheSlider from "./TheSlider.vue";
+import { createNamespacedHelpers } from "vuex";
+const { mapState } = createNamespacedHelpers("images");
+import axios from "axios";
 export default {
   data() {
     return {
@@ -188,12 +227,70 @@ export default {
           dataClass: "form_contact-input",
         },
       ],
+      imageItems: {
+        id: Math.floor(Math.random() * 1000),
+        img: "",
+        title: "hinh anh",
+      },
+      slideItem: {
+        image: "",
+        description: "",
+      },
     };
   },
   components: {
     TheImage,
     FormInput,
     TheSlider,
+  },
+  computed: {
+    ...mapState({
+      items: (state) => state.listImage,
+    }),
+  },
+  methods: {
+    handleUpload() {
+      this.imageItems.img = this.$refs.file.files[0];
+    },
+    deleteImage() {
+      this.$store.dispatch("images/deleteImageActions");
+    },
+    async addImage(imageItems) {
+      const data = new FormData();
+      data.append("file", imageItems.img);
+      data.append("upload_preset", "uploads");
+      try {
+        const uploads = await axios.post(
+          "https://api.cloudinary.com/v1_1/dwdezrrqh/upload",
+          data
+        );
+        imageItems.img = uploads.data.url;
+        this.$store.dispatch("images/addImageactions", imageItems);
+      } catch (err) {
+        alert(err);
+      }
+    },
+    handleUploadSlide() {
+      this.slideItem.image = this.$refs.file.files[0];
+    },
+    deleteSlide() {
+      this.$store.dispatch("slides/deleteSlideActions");
+    },
+    async addSlide(slideItem) {
+      const data = new FormData();
+      data.append("file", slideItem.image);
+      data.append("upload_preset", "uploads");
+      try {
+        const uploads = await axios.post(
+          "https://api.cloudinary.com/v1_1/dwdezrrqh/upload",
+          data
+        );
+        slideItem.image = uploads.data.url;
+        this.$store.dispatch("slides/addSlideActions", slideItem);
+      } catch (err) {
+        alert(err);
+      }
+    },
   },
 };
 </script>
