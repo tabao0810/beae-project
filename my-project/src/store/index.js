@@ -1,12 +1,14 @@
 import {createStore} from 'vuex';
 import images from './modules/images';
-import slides from './modules/slides'
+import slides from './modules/slides';
+import products from './modules/products'
 
 
 const store = createStore({
     modules:{
         images,
-        slides
+        slides,
+        products
     }
 });
 export default store
