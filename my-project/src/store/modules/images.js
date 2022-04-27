@@ -53,7 +53,7 @@ const mutations ={
     }
 }
 const actions={
-    addImageactions(context,payload){
+    addImageActions(context,payload){
         context.commit("addImageMutation",payload)
     },
     deleteImageActions(context){

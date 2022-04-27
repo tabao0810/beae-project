@@ -1,9 +1,8 @@
 <template>
+  <edit-image @add="addTo" @input="abcs"></edit-image>
   <div class="">
     <h1 class="mb-10">The image</h1>
-    <div
-      :class="`grid gap-x-${numImg.spacex} gap-y-${numImg.spacey} grid-cols-${numImg.colums} `"
-    >
+    <div class="grid gap-x-4 gap-y-4" :class="grid - cols - `${a.colums}`">
       <div v-for="(item, index) in items" :key="index">
         <div class="w-full h-full">
           <img
@@ -13,42 +12,43 @@
             @click="handleToOpen(item)"
           />
         </div>
-        <div class="lightbox" :class="{ active: isActive }">
+        <!-- <div class="lightbox" :class="{ active: isActive }">
           <span class="close-icon" @click="handleToClose">&times;</span>
           <img
             :src="items[currentIamge].img"
             alt=""
             class="image-placeholder w-full h-full px-60 py-10"
           />
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import EditImage from "./EditImage.vue";
 import { createNamespacedHelpers } from "vuex";
 const { mapState } = createNamespacedHelpers("images");
 export default {
   data() {
     return {
-      isActive: false,
-      currentIamge: 0,
+      numImg: {
+        colums: 0,
+        spacex: 0,
+        spacey: 0,
+      },
     };
   },
-  methods: {
-    handleToOpen(item) {
-      this.isActive = true;
-      this.currentIamge = item.id - 1;
-      console.log(this.colums);
-    },
-    handleToClose() {
-      this.isActive = false;
-    },
+  components: {
+    EditImage,
   },
-  props: {
-    numImg: {
-      type: Object,
+  methods: {
+    addTo(a) {
+      console.log(a);
+    },
+    abcs(a) {
+      console.log(a);
+      this.numImg.colums = a;
     },
   },
   computed: {
@@ -59,31 +59,4 @@ export default {
 };
 </script>
 
-<style>
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding-top: 100px;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-.active {
-  display: block;
-}
-.close-icon {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 50px;
-  cursor: pointer;
-}
-.img-size {
-  width: 100px;
-  height: 100px;
-}
-</style>
+<style></style>
