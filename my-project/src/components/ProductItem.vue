@@ -20,7 +20,7 @@
         </h3>
         <!-- <p class="mt-1 text-sm text-gray-500">{{ product.color }}</p> -->
       </div>
-      <p class="text-2xl font-semibold text-gray-900">{{ product.price }}</p>
+      <p class="text-2xl font-semibold text-gray-900">${{ product.price }}</p>
     </div>
     <div class="mt-4 flex justify-end">
       <button

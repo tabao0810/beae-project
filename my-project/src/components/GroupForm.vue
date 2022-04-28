@@ -1,8 +1,12 @@
 <template>
-  <div>
+  <div class="mx-auto">
     <h1 class="mt-20 mb-5">Edit form</h1>
-    <div v-for="(data, index) in formContact" :key="index" class="mt-3 mb-5">
-      <div class="flex items-center mt-3">
+    <div
+      v-for="(data, index) in formContact"
+      :key="index"
+      class="mt-3 mb-5 mx-auto"
+    >
+      <div class="flex items-center text-center mt-3">
         <p class="">Field type:</p>
         <select
           name=""

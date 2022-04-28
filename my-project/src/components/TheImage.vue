@@ -40,7 +40,7 @@ export default {
     handleToOpen(item) {
       this.isActive = true;
       this.currentIamge = item.id - 1;
-      console.log(this.colums);
+      console.log(item.id);
     },
     handleToClose() {
       this.isActive = false;

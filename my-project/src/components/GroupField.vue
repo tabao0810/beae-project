@@ -74,15 +74,6 @@ export default {
           dataClass: "form_contact-input",
         },
       ],
-      imageItems: {
-        id: Math.floor(Math.random() * 1000),
-        img: "",
-        title: "hinh anh",
-      },
-      slideItem: {
-        image: "",
-        description: "",
-      },
     };
   },
   components: {
@@ -103,7 +94,7 @@ export default {
 </script>
 
 <style></style>
-<style scoped>
+<style>
 .input-num {
   padding: 2px 10px;
 }

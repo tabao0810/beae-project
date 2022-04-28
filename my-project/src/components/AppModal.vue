@@ -1,7 +1,7 @@
 <template>
   <div class="moda" v-if="isOpen" @click="handleCloseDetail">
     <div class="modal__container" @click.stop>
-      <div class="modal__header d-flex justify-end">
+      <div class="modal__header flex justify-end">
         <div class="modal__close" @click="handleCloseDetail">
           <p>✕</p>
         </div>
@@ -46,6 +46,8 @@ export default {
 }
 .modal__container {
   width: 800px;
+  height: 600px;
+  overflow-y: scroll;
   margin: auto;
   margin-top: 100px;
   background-color: #fff;
